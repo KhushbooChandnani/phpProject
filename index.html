@@ -5,24 +5,39 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <script src="https://smtpjs.com/v3/smtp.js"></script>
+    <script type="text/javascript">
+      function getLocation() {
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(showPosition);
+  } else {
+     console.log("Geolocation is not supported by this browser.");
+  }
+}
+
+function showPosition(position) {
+  console.log ("Latitude: " + position.coords.latitude +
+  "<br>Longitude: " + position.coords.longitude);
+} 
+      function sendEmail() {
+        getLocation();
+        Email.send({
+          Host: "smtp.gmail.com",
+          Username: "khushboochandnaniportfolio@gmail.com",
+          Password: "Kitten@21",
+          To: 'khushboochandnaniportfolio@gmail.com',
+          From: "khushboochandnaniportfolio@gmail.com",
+          Subject: "Sending Email using javascript",
+          Body: "Well that was easy!!",
+        })
+          .then(function (message) {
+            alert("mail sent successfully")
+          });
+      }
+    </script>
+  
 </head>
-<script src="https://smtpjs.com/v3/smtp.js"></script>
-<script type="text/javascript">
-    function sendEmail() {
-      Email.send({
-        Host: "smtp.gmail.com",
-        Username: "zomcommon@gmail.com",
-        Password: "nehaghind",
-        To: 'ghind20@gmail.com',
-        From: "zomcommon@gmail.com",
-        Subject: "Sending Email using javascript",
-        Body: "Well that was easy!!",
-      })
-        .then(function (message) {
-          alert("mail sent successfully")
-        });
-    }
-  </script>
+
 <body>
     <form method="post">
         <input type="button" value="Send Email" 
